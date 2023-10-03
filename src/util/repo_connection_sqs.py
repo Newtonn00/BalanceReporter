@@ -1,8 +1,9 @@
 from boto3.session import Session
-
+from settings_parser import SettingsParser
 
 class EngineConnectionSqs:
     def __init__(self):
-        session = Session(aws_access_key_id="AKIA4XX3GNSABTIP3B6A",
-                          aws_secret_access_key="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")
+        connection_settings = SettingsParser()
+        session = Session(aws_access_key_id=connection_settings.asw_key,
+                          aws_secret_access_key=connection_settings.asw_s_key)
         self.sqs = session.resource('sqs')
